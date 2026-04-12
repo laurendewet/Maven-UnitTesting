@@ -10,11 +10,12 @@ package com.mycompany.chatterapp;
  */
 public class Login {
     
-String Username;
-String Password;
+String username;
+String password;
+String phoneNumber;
     public boolean checkUserName()
      {   
-      if(Username.contains("_") && Username.length() == 5) 
+      if(username.contains("_") && username.length() == 5) 
        {
          return true;
        }else
@@ -25,8 +26,8 @@ String Password;
     
     public boolean checkPasswordComplexity()
     {
-     if(Password.length() <= 8 && Password.matches(".*[A-Z].*") &&
-       Password.matches(".*[0-9].*") && Password.matches(".*[^a-zA-Z0-9].*")) 
+     if(password.length() <= 8 && password.matches(".*[A-Z].*") &&
+       password.matches(".*[0-9].*") && password.matches(".*[^a-zA-Z0-9].*")) 
         {
          return true; 
         }else
@@ -35,4 +36,40 @@ String Password;
           }
     }      
     
+     public boolean checkCellPhoneNumber()
+    {
+     if(phoneNumber.matches("^\\+27[6-8][0-9]{8}$")) 
+        {
+         return true; 
+        }else
+          {
+           return false;   
+          }
+    }
+    
+    public String registerUser()
+    {
+        
+        if(checkUserName() == false)
+        {
+         return "THE USERNAME IS INCORRECT! PLEASE ENTER A _ AND\nTHE LENGTH MUST BE 5 CHARRECTERS LONG :)"  ; 
+        }
+        
+        if(checkPasswordComplexity() == false )
+          {
+           return "THE PASSWORD IS INCORRECT! THE PASSWORD DOES\nNOT MEET THE COMPLEXITY REQUIREMENTS :)"  ;  
+          }  
+        
+        if(checkUserName() == true && checkPasswordComplexity() == true )
+          {
+           return "YOUR SUCCESSFULLY REGISTERD!!! :D";   
+          } 
+    
+    }
+    
+    public boolean loginUser()
+     {
+        
+     }
+     
 }
