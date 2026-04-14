@@ -108,13 +108,18 @@ public class ChatterApp {
                      passWord = userInput;
                 }               
          }
-        
+        //Resource for this work
+        //https://youtu.be/fNbIvrsGCR0
         try
         {
+         //Creates a new text file and the true allows it to append to info without writeing it
+         //Users username , passwor and phonenumber is stored in the file and the info is seperated with a ,   
          FileWriter fileCL = new FileWriter("usersinfo.txt",true); 
           fileCL.write(userName +","+ passWord +","+ phoneNumber + "\n");
            fileCL.close();
-            System.out.println("REGESTRATION INFO SAVED!!!");   
+           
+            System.out.println("REGESTRATION INFO SAVED!!!"); 
+         //Catches errors like info not writing to the file
         }catch(IOException FileError)
           {
            System.out.println("PROBLEM WRITEING TO THE FILE!!!");   
