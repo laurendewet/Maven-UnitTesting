@@ -4,6 +4,9 @@
  */
 package com.mycompany.chatterapp;
 
+import java.io.File;
+import java.util.Scanner;
+
 /**
  *
  * @author lab_services_student
@@ -13,6 +16,9 @@ public class Login {
 String username;
 String password;
 String phoneNumber;
+String loginUsername;
+String loginPassword;
+
     public boolean checkUserName()
      {   
       if(username.contains("_") && username.length() == 5) 
@@ -64,12 +70,52 @@ String phoneNumber;
           {
            return "YOUR SUCCESSFULLY REGISTERD!!! :D";   
           } 
+    return null;
     
     }
     
-    public boolean loginUser()
+    public boolean loginUser() 
      {
+         boolean LoginSuccess = false;
+         
+         File fileInfo = new File("userInfo.txt");
+    
+         
+                
+      try
+       {
+        Scanner fileScan = new Scanner (fileInfo);
         
+        while (fileScan.hasNextLine())
+         {
+          String userInfo = fileScan.nextLine();
+           String[] section = userInfo.split(",");
+           
+           if (section.length >= 2)
+           {
+            String fileUsername = section[0];
+             String filePassword = section[1];
+             
+            if(fileUsername.equals(loginUsername) && filePassword.equals(loginPassword))  
+             {
+              LoginSuccess = true; 
+              break;
+              } 
+           }
+         }  
+        fileScan.close();
+       }catch (Exception errorRead)
+        {
+        errorRead.printStackTrace();
+        } 
+       if(LoginSuccess == true)
+        {
+         return true;
+        }else
+         {
+          return false;       
+         }
      }
-     
 }
+
+

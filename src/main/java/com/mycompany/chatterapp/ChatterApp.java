@@ -3,6 +3,8 @@
  */
 
 package com.mycompany.chatterapp;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner ;
 
 /**
@@ -65,6 +67,7 @@ public class ChatterApp {
         
         userInput = myScan.nextLine();
         logCL.phoneNumber = userInput; 
+        phoneNumber = userInput;
         
         while (logCL.checkCellPhoneNumber() == false)
          {
@@ -102,10 +105,19 @@ public class ChatterApp {
                    userInput = myScan.nextLine();
                     logCL.password = userInput;     
                      passWord = userInput;
-                }   
+                }               
          }
         
-        
+        try
+        {
+         FileWriter fileCL = new FileWriter("usersinfo.txt",true); 
+          fileCL.write(userName +","+ passWord +","+ phoneNumber + "\n");
+           fileCL.close();
+            System.out.println("REGESTRATION INFO SAVED!!!");   
+        }catch(IOException FileError)
+          {
+           System.out.println("PROBLEM WRITEING TO THE FILE!!!");   
+          }  
             
        }else
          {
