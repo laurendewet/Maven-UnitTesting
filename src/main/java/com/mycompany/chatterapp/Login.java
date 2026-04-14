@@ -5,6 +5,7 @@
 package com.mycompany.chatterapp;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 /**
@@ -32,7 +33,7 @@ String loginPassword;
     
     public boolean checkPasswordComplexity()
     {
-     if(password.length() <= 8 && password.matches(".*[A-Z].*") &&
+     if(password.length() >= 8 && password.matches(".*[A-Z].*") &&
        password.matches(".*[0-9].*") && password.matches(".*[^a-zA-Z0-9].*")) 
         {
          return true; 
@@ -78,7 +79,7 @@ String loginPassword;
      {
          boolean LoginSuccess = false;
          
-         File fileInfo = new File("userInfo.txt");
+         File fileInfo = new File("usersinfo.txt");
     
          
                 
@@ -104,18 +105,22 @@ String loginPassword;
            }
          }  
         fileScan.close();
-       }catch (Exception errorRead)
+       }catch (FileNotFoundException errorRead)
         {
-        errorRead.printStackTrace();
         } 
-       if(LoginSuccess == true)
-        {
-         return true;
-        }else
-         {
-          return false;       
-         }
+    return LoginSuccess == true;
      }
+    
+    public String returnLoginStatus()
+     {
+         if(loginUser() == true)
+         {
+             return "YOUR SUCCESSFULY LOGIN TO THE CHAT APP";
+         }else
+          {
+           return "LOGIN FAILED";   
+          }
+     }  
 }
 
 

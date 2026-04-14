@@ -84,7 +84,8 @@ public class ChatterApp {
           
         if(logCL.checkUserName() == true && logCL.checkPasswordComplexity() == true )
           {
-           System.out.println(logCL.registerUser()); 
+           System.out.println("--------------------------------------------");     
+            System.out.println(logCL.registerUser()); 
           } 
         
         
@@ -118,6 +119,9 @@ public class ChatterApp {
           {
            System.out.println("PROBLEM WRITEING TO THE FILE!!!");   
           }  
+        
+        System.out.println("NOW GOING TO LOGIN !!! :D"); 
+        userInput = "YES";
             
        }else
          {
@@ -128,7 +132,34 @@ public class ChatterApp {
               userInput = myScan.nextLine();   
          }
       }
-        
-            
+     
+      System.out.println("------------------------------------------");    
+       System.out.println("PLEASE ENTER YOUR USERNAME !!! :D");  
+        userInput = myScan.nextLine();
+         logCL.loginUsername = userInput;
+         
+      System.out.println("------------------------------------------");    
+       System.out.println("PLEASE ENTER YOUR PASSWORD !!! :D");  
+        userInput = myScan.nextLine();
+         logCL.loginPassword = userInput;
+     
+     while (logCL.loginUser() == false) 
+      {
+         
+       System.out.println(logCL.returnLoginStatus());   
+        System.out.println("------------------------------------------");  
+         System.out.println("WORNG USERNAME OR PASSWORD TRY AGIAN");       
+          System.out.println("PLEASE ENTER YOUR USERNAME :)");  
+           userInput = myScan.nextLine();
+            logCL.loginUsername = userInput;
+          
+      System.out.println("------------------------------------------");    
+       System.out.println("PLEASE ENTER YOUR PASSWORD:)");  
+        userInput = myScan.nextLine();
+         logCL.loginPassword = userInput;
+      }
+     System.out.println("------------------------------------------"); 
+      System.out.println(logCL.returnLoginStatus());  
+       System.out.println("------------------------------------------"); 
     }  
 }
